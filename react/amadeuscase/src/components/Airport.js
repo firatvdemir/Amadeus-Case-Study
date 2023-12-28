@@ -15,7 +15,11 @@ function Airports() {
             || airport.code.toLowerCase().includes(searchQuery.toLowerCase())
             || airport.city.toLowerCase().includes(searchQuery.toLowerCase())
             || airport.country.toLowerCase().includes(searchQuery.toLowerCase())
-            ) {return true}
+            ) {
+                return true
+            } else {
+                return false
+            }
         })
         if(results.length > 0) {
             setSearchResult(results);
@@ -40,12 +44,29 @@ function Airports() {
                 placeholder="Search Airports&Codes, Cities, Countries..." />
         </InputGroup>
         <ListGroup variant="flush">
-            {searchResult.length > 0 ? 
-            searchResult.map((result) => (
-                <ListGroup.Item> {result.name} </ListGroup.Item>
-            )) : "Sonuç Bulunamadı!"}
+            {searchResult.length > 0 ? ListItem(searchResult) : "Sonuç Bulunamadı!"}
         </ListGroup>
     </div>
+    )
+}
+
+function ListItem(airport) {
+
+    const dataFormatter = (item) => {
+
+        return(
+            <>
+                <p> {item.name}<b> ({item.code})</b>, <i> {item.city} </i> </p>
+            </>
+        )
+    }
+
+    return(
+    <>
+        {airport.map((result, index) => (
+            <ListGroup.Item key={index} > { dataFormatter(result) } </ListGroup.Item>
+        ))}
+    </> 
     )
 }
 
