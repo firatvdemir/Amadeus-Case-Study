@@ -15,14 +15,14 @@ function App() {
           <br/>
         </Row>
         <Row>
-          <Col xs={1} md={2} ><h2>hello</h2></Col>
-          <Col xs={5} md={4}>
+          <Col xs={1} md={1} />
+          <Col xs={5} md={5}>
             <Airports />
           </Col>
-          <Col xs={5} md={4}>
+          <Col xs={5} md={5}>
             <Airports />
           </Col>
-          <Col xs={1} md={2} ><h2>hello</h2></Col>
+          <Col xs={1} md={1} />
         </Row>
       </Container>
     </div>
