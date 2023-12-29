@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext} from "react";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -7,31 +7,29 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Accordion from 'react-bootstrap/Accordion';
 
 import airports from "../data/airports.json";
+import { FlightContext } from "../App";
 
 function Airports({type}) {
     const[searchQuery, setSearchQuery] = useState('');
     const[searchResult, setSearchResult] = useState([]);
     const[airportSelection, setAirportSelection] = useState({});
-    const[searchBarPlaceholder, setSearchBarPlaceholder] = useState("Search Airports, Codes, Cities...")
+    const[searchBarPlaceholder, setSearchBarPlaceholder] = useState("Search Airports, Codes, Cities...");
+    
+    const {flightInfo, setFlightInfo} = useContext(FlightContext);
 
     useEffect(() => {
-        const results = airports.filter((airport) => {
-            if(airport.name.toLowerCase().includes(searchQuery.toLowerCase())
+        const results = airports.filter((airport) => (airport.name.toLowerCase().includes(searchQuery.toLowerCase())
             || airport.code.toLowerCase().includes(searchQuery.toLowerCase())
             || airport.city.toLowerCase().includes(searchQuery.toLowerCase())
             || airport.country.toLowerCase().includes(searchQuery.toLowerCase())
-            ) {
-                return true
-            } else {
-                return false
-            }
-        })
-
+            ) ? true : false 
+        );
         results.length > 0 ? setSearchResult(results) : setSearchResult([]);
     }, [searchQuery]);  
 
-    const handleSeachChange = (event) => {
+    const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
+        console.log(flightInfo);
     }
 
     const ListItem = (airport) => {
@@ -43,9 +41,13 @@ function Airports({type}) {
                     key={index}
                     action
                     onClick={() => {
-                        setAirportSelection(result);
-                        setSearchBarPlaceholder(result.name)} 
-                    }
+                        setFlightInfo({
+                            ...flightInfo,
+                            [type]: result.name
+                        });
+                        setSearchBarPlaceholder(result.name)
+                        setSearchQuery(result.name)
+                    }}
                     variant="light"
                 > <p> {result.name}<b> ({result.code})</b>, <i> {result.city} </i> </p> </ListGroup.Item>
             ))}
@@ -63,7 +65,7 @@ function Airports({type}) {
                         <Form.Control
                             type="text"
                             value={searchQuery}
-                            onChange={handleSeachChange}
+                            onChange={handleSearchChange}
                             aria-describedby="basic-addon2"
                             placeholder={searchBarPlaceholder} />
                 </InputGroup>
