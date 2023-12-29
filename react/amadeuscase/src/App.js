@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 import React, { useState } from 'react';
 
@@ -37,21 +38,20 @@ function App() {
     <div className="App">
       <FlightContext.Provider value={value}>
         <Container>
+
           <Row>
           <h2>Welcome to Flight Searcher App!</h2><br/>
           </Row>
+
           <Row>
-            <Col md={4} >
+            <Col md={5} >
               <Airports type={"departureAirport"} />
             </Col>
-            <Col md={4} >
+            <Col md={5} >
               {isSwitchChecked === false && <Airports type={"returnAirport"} />}
             </Col>
-
-            <Col >
-              <button>Hello</button>
-            </Col>
           </Row>
+
           <Row>
             <Col md={3}>
               <DatePicker type={"departureDate"} />
@@ -59,7 +59,7 @@ function App() {
             <Col md={3}>
               {isSwitchChecked === false && <DatePicker type={"returnDate"} />}
             </Col>
-            <Col md={3}>
+            <Col md={2}>
               <Form id='switcher'>
                 <Form.Label> {switchLabel} </Form.Label>
                 <Form.Check
@@ -70,7 +70,18 @@ function App() {
                 />
               </Form>
             </Col>
-            <Col md={3}></Col>
+            <Col >
+              <Button
+                variant="outline-primary"
+                type="submit"
+                className='buttons'
+              > Search </Button>
+              <Button
+                variant="outline-secondary"
+                type="submit"
+                className='buttons'
+              > Reset </Button>
+            </Col>
           </Row>
 
         </Container>
@@ -80,3 +91,4 @@ function App() {
 }
 
 export default App;
+

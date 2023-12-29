@@ -85,10 +85,3 @@ function Airports({type}) {
 
 
 export default Airports;
-
-{/* <Button
-variant="outline-secondary"
-type="submit"
-id="button-addon2"
-onClick={HandleSubmit}> Search
-</Button> */}

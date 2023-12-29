@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   font-family: -apple-system-tall-body, BlinkMacSystemFont, sans-serif;
-  margin-top: 20%;
+  margin-top: 10%;
 }
 
 #airportList {
@@ -11,10 +11,16 @@
 
 #switcher {
   margin-top: 10%;
-  float: left;
 }
 
 #custom-switch {
-  transform: scale(1.5);
+  transform: scale(2.5);
+}
+
+.buttons {
+  float: left;
+  margin-top: 10%;
+  margin-left: 25px;
+  transform: scale(1.3);
 }
 
