@@ -25,7 +25,7 @@ function DatePicker({ type }) {
     <>
       <Form>
         <Form.Group className="mb-3" >
-          <Form.Label> {label} </Form.Label>
+          <Form.Label style={{float: "left", marginTop: "10%"}}> {label} </Form.Label>
           <Form.Control 
             type="date"
             value={selectedDate}
