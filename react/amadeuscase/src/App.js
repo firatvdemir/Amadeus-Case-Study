@@ -1,8 +1,11 @@
-import './App.css';
+import Airports from './components/Airport.js';
+import DatePicker from './components/DatePicker.js';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Airports from './components/Airport.js';
+
+import './App.css';
 
 function App() {
   return (
@@ -15,15 +18,20 @@ function App() {
           <br/>
         </Row>
         <Row>
-          <Col xs={1} md={1} />
-          <Col xs={5} md={5}>
+          <Col md={4}>
             <Airports />
           </Col>
-          <Col xs={5} md={5}>
+          <Col md={4} >
             <Airports />
           </Col>
-          <Col xs={1} md={1} />
+          <Col md={2}>
+            <DatePicker />
+          </Col>
+          <Col md={2}>
+            <DatePicker />
+          </Col>
         </Row>
+
       </Container>
     </div>
   );
