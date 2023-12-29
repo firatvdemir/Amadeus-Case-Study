@@ -39,7 +39,7 @@ function Airports({type}) {
         return(
         <>
             {airport.map((result, index) => (
-                <ListGroup.Item 
+                <ListGroup.Item
                     key={index}
                     action
                     onClick={() => {
@@ -70,7 +70,7 @@ function Airports({type}) {
             </Accordion.Header>
 
             <Accordion.Body>
-                <ListGroup>
+                <ListGroup id="airportList" >
                     {searchResult.length > 0 ? ListItem(searchResult) : "Sonuç Bulunamadı!"}
                 </ListGroup>
             </Accordion.Body>

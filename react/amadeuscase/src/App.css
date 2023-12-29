@@ -1,4 +1,10 @@
 .App {
   text-align: center;
   font-family: -apple-system-tall-body, BlinkMacSystemFont, sans-serif;
+  margin-top: 20%;
+}
+
+#airportList {
+  height: 300px;
+  overflow-y: scroll;
 }

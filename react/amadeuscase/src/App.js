@@ -15,17 +15,20 @@ function App() {
         <h2>Welcome to Flight Searcher App!</h2><br/>
         </Row>
         <Row>
-          <Col md={4}>
+          <Col md={4} >
             <Airports type={"departureAirport"} />
           </Col>
           <Col md={4} >
             <Airports />
           </Col>
-          <Col md={2}>
+          <Col>
             <DatePicker />
           </Col>
-          <Col md={2}>
+          <Col>
             <DatePicker />
+          </Col>
+          <Col >
+            <button>Hello</button>
           </Col>
         </Row>
 
