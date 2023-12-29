@@ -12,14 +12,11 @@ function App() {
     <div className="App">
       <Container>
         <Row>
-          <br/>
-          <h2>Welcome to Flight Searcher App!</h2>
-          <br/>
-          <br/>
+        <h2>Welcome to Flight Searcher App!</h2><br/>
         </Row>
         <Row>
           <Col md={4}>
-            <Airports />
+            <Airports type={"departureAirport"} />
           </Col>
           <Col md={4} >
             <Airports />

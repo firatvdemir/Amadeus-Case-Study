@@ -8,9 +8,11 @@ import Accordion from 'react-bootstrap/Accordion';
 
 import airports from "../data/airports.json";
 
-function Airports() {
+function Airports({type}) {
     const[searchQuery, setSearchQuery] = useState('');
     const[searchResult, setSearchResult] = useState([]);
+    const[airportSelection, setAirportSelection] = useState({});
+    const[searchBarPlaceholder, setSearchBarPlaceholder] = useState("Search Airports, Codes, Cities...")
 
     useEffect(() => {
         const results = airports.filter((airport) => {
@@ -26,16 +28,34 @@ function Airports() {
         })
 
         results.length > 0 ? setSearchResult(results) : setSearchResult([]);
-
     }, [searchQuery]);  
 
     const handleSeachChange = (event) => {
         setSearchQuery(event.target.value);
     }
 
+    const ListItem = (airport) => {
+
+        return(
+        <>
+            {airport.map((result, index) => (
+                <ListGroup.Item 
+                    key={index}
+                    action
+                    onClick={() => {
+                        setAirportSelection(result);
+                        setSearchBarPlaceholder(result.name)} 
+                    }
+                    variant="light"
+                > <p> {result.name}<b> ({result.code})</b>, <i> {result.city} </i> </p> </ListGroup.Item>
+            ))}
+        </> 
+        )
+    };
+
     return (
     <div id='searchBar'>
-    <Accordion flush>
+    <Accordion>
         <Accordion.Item eventKey="0">
 
             <Accordion.Header>
@@ -45,12 +65,12 @@ function Airports() {
                             value={searchQuery}
                             onChange={handleSeachChange}
                             aria-describedby="basic-addon2"
-                            placeholder="Search Airports, Codes, Cities..." />
+                            placeholder={searchBarPlaceholder} />
                 </InputGroup>
             </Accordion.Header>
 
             <Accordion.Body>
-                <ListGroup variant="flush">
+                <ListGroup>
                     {searchResult.length > 0 ? ListItem(searchResult) : "Sonuç Bulunamadı!"}
                 </ListGroup>
             </Accordion.Body>
@@ -61,16 +81,6 @@ function Airports() {
     )
 }
 
-function ListItem(airport) {
-
-    return(
-    <>
-        {airport.map((result, index) => (
-            <ListGroup.Item key={index} > <p> {result.name}<b> ({result.code})</b>, <i> {result.city} </i> </p> </ListGroup.Item>
-        ))}
-    </> 
-    )
-};
 
 export default Airports;
 

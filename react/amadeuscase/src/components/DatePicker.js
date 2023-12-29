@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import flights from '../data/flights.json';
 
 function DatePicker() {
   const[selectedDate, setSelectedDate] = useState("");
 
+  useEffect(() => {
+    const results = flights.filter((flight) => flight.departure_date.includes(selectedDate) ? true : false);
+  }, [selectedDate]);
+
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
-    console.log(flights);
   };
 
   return (
@@ -19,7 +22,7 @@ function DatePicker() {
             type="date"
             value={selectedDate}
             onChange={handleDateChange}
-            placeholder="name@example.com" />
+          />
         </Form.Group>
       </Form>
     </>
