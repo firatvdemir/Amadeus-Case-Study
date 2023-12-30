@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext} from "react";
 
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -14,7 +13,6 @@ function Airports({type}) {
     const[searchResult, setSearchResult] = useState([]);
     const[airportSelection, setAirportSelection] = useState({});
     const[searchBarPlaceholder, setSearchBarPlaceholder] = useState("Search Airports, Codes, Cities...");
-    
     const {flightInfo, setFlightInfo} = useContext(FlightContext);
 
     useEffect(() => {
@@ -22,10 +20,10 @@ function Airports({type}) {
             || airport.code.toLowerCase().includes(searchQuery.toLowerCase())
             || airport.city.toLowerCase().includes(searchQuery.toLowerCase())
             || airport.country.toLowerCase().includes(searchQuery.toLowerCase())
-            ) ? true : false 
+            ) ? true : false
         );
         results.length > 0 ? setSearchResult(results) : setSearchResult([]);
-    }, [searchQuery]);  
+    }, [searchQuery]);
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -51,7 +49,7 @@ function Airports({type}) {
                     variant="light"
                 > <p> {result.name}<b> ({result.code})</b>, <i> {result.city} </i> </p> </ListGroup.Item>
             ))}
-        </> 
+        </>
         )
     };
 
@@ -82,6 +80,5 @@ function Airports({type}) {
     </div>
     )
 }
-
 
 export default Airports;

@@ -1,5 +1,6 @@
 import Airports from './components/Airport.js';
 import DatePicker from './components/DatePicker.js';
+import FlightResults from './components/FlightResults.js';
 
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -14,7 +15,7 @@ import './App.css';
 export const FlightContext = React.createContext({
   flightInfo: {
     departureAirport: "",
-    returnAirport: "",
+    arrivalAirport: "",
     departureDate: "",
     returnDate: "",
     flightPrice: 0,
@@ -26,7 +27,7 @@ function App() {
   const[isSwitchChecked, setIsSwitchChecked] = useState(false);
   const[flightInfo, setFlightInfo] = useState({
     departureAirport: "",
-    returnAirport: "",
+    arrivalAirport: "",
     departureDate: "",
     returnDate: "",
     flightPrice: 0,
@@ -48,7 +49,7 @@ function App() {
               <Airports type={"departureAirport"} />
             </Col>
             <Col md={5} >
-              {isSwitchChecked === false && <Airports type={"returnAirport"} />}
+              <Airports type={"arrivalAirport"} />
             </Col>
           </Row>
 
@@ -84,6 +85,12 @@ function App() {
             </Col>
           </Row>
 
+          <Row>
+            <Col>
+              <FlightResults />
+            </Col>
+          </Row>
+
         </Container>
       </FlightContext.Provider>
     </div>
@@ -91,4 +98,3 @@ function App() {
 }
 
 export default App;
-
