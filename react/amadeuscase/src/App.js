@@ -36,7 +36,8 @@ function App() {
   });
   const value = {flightInfo, setFlightInfo};
   const[renderFlightResults, setRenderFlightResults] = useState(false);
-  const switchLabel = isSwitchChecked ? "One Way" : "Two Way"
+  const switchLabel = isSwitchChecked ? "One Way" : "Two Way";
+  const isClickable = renderFlightResults ? { pointerEvents: 'none'} : null
 
   const handleFlightResults = () => {
     switch(isSwitchChecked) {
@@ -71,7 +72,7 @@ function App() {
           <h2 id='welcomeTitle'>Welcome to Flight Searcher App!</h2><br/>
           </Row>
 
-          <Row>
+          <Row style={isClickable}>
             <Col md={5} >
               <Airports type={"departureAirport"} />
             </Col>
@@ -81,13 +82,13 @@ function App() {
           </Row>
 
           <Row>
-            <Col md={3}>
+            <Col md={3} style={isClickable}>
               <DatePicker type={"departureDate"} />
             </Col>
-            <Col md={3}>
+            <Col md={3} style={isClickable}>
               {isSwitchChecked === false && <DatePicker type={"returnDate"} />}
             </Col>
-            <Col md={2}>
+            <Col md={2} style={isClickable}>
               <Form id='switcher'>
                 <Form.Label> {switchLabel} </Form.Label>
                 <Form.Check
@@ -104,6 +105,7 @@ function App() {
                 type="submit"
                 className='buttons'
                 onClick={ handleFlightResults }
+                style={isClickable}
               > Search </Button>
               <Button
                 variant="outline-secondary"
