@@ -68,7 +68,7 @@ function App() {
         <Container>
 
           <Row>
-          <h2>Welcome to Flight Searcher App!</h2><br/>
+          <h2 id='welcomeTitle'>Welcome to Flight Searcher App!</h2><br/>
           </Row>
 
           <Row>
@@ -114,7 +114,7 @@ function App() {
           </Row>
 
           <Row>
-            <Col>
+            <Col md={10}>
               { renderFlightResults && <FlightResults type={isSwitchChecked ? "oneWay" : "twoWay"} /> }
             </Col>
           </Row>

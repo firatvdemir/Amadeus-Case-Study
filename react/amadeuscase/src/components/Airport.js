@@ -4,15 +4,18 @@ import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Accordion from 'react-bootstrap/Accordion';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 import airports from "../data/airports.json";
 import { FlightContext } from "../App";
 
 function Airports({type}) {
     const[searchQuery, setSearchQuery] = useState('');
-    const[searchResult, setSearchResult] = useState([]);
+    const[searchResult, setSearchResult] = useState([]);   
     const[searchBarPlaceholder, setSearchBarPlaceholder] = useState("Search Airports, Codes, Cities...");
     const {flightInfo, setFlightInfo} = useContext(FlightContext);
+    const header = type === "departureAirport" ? "Departure" : "Arrival"; 
 
     useEffect(() => {
         const results = airports.filter((airport) => (airport.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -57,14 +60,23 @@ function Airports({type}) {
         <Accordion.Item eventKey="0">
 
             <Accordion.Header>
-                <InputGroup className="mb-3">
-                        <Form.Control
-                            type="text"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            aria-describedby="basic-addon2"
-                            placeholder={searchBarPlaceholder} />
-                </InputGroup>
+                <Container>
+                    <Row>
+                        <h4> {header} </h4>
+                    </Row>
+                    <Row>
+                        <InputGroup className="mb-3">
+                                <Form.Control
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={handleSearchChange}
+                                    aria-describedby="basic-addon2"
+                                    placeholder={searchBarPlaceholder} />
+                        </InputGroup>
+                    </Row>
+                </Container>
+
+
             </Accordion.Header>
 
             <Accordion.Body>
