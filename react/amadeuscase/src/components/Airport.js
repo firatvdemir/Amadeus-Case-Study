@@ -11,7 +11,6 @@ import { FlightContext } from "../App";
 function Airports({type}) {
     const[searchQuery, setSearchQuery] = useState('');
     const[searchResult, setSearchResult] = useState([]);
-    const[airportSelection, setAirportSelection] = useState({});
     const[searchBarPlaceholder, setSearchBarPlaceholder] = useState("Search Airports, Codes, Cities...");
     const {flightInfo, setFlightInfo} = useContext(FlightContext);
 
@@ -27,7 +26,6 @@ function Airports({type}) {
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
-        console.log(flightInfo);
     }
 
     const ListItem = (airport) => {

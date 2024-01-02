@@ -115,7 +115,7 @@ function App() {
 
           <Row>
             <Col>
-              { renderFlightResults && <FlightResults /> }
+              { renderFlightResults && <FlightResults type={isSwitchChecked ? "oneWay" : "twoWay"} /> }
             </Col>
           </Row>
 

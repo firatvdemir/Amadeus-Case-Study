@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import Form from 'react-bootstrap/Form';
-import flights from '../data/flights.json';
 import { FlightContext } from "../App";
 
 function DatePicker({ type }) {
@@ -8,9 +7,6 @@ function DatePicker({ type }) {
   const {flightInfo, setFlightInfo} = useContext(FlightContext);
 
   const label = (type === "departureDate") ? "Departure Date" : "Return Date";
-  useEffect(() => {
-    const results = flights.filter((flight) => flight.departure_date.includes(selectedDate) ? true : false);
-  }, [selectedDate]);
 
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
