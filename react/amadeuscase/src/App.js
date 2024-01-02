@@ -18,7 +18,8 @@ export const FlightContext = React.createContext({
     arrivalAirport: "",
     departureDate: "",
     returnDate: "",
-    flightPrice: 0,
+    departurePrice: 0,
+    returnPrice: 0,
   },
   setFlightInfo: () => {}
 })
@@ -30,10 +31,36 @@ function App() {
     arrivalAirport: "",
     departureDate: "",
     returnDate: "",
-    flightPrice: 0,
+    departurePrice: 0,
+    returnPrice: 0,
   });
   const value = {flightInfo, setFlightInfo};
+  const[renderFlightResults, setRenderFlightResults] = useState(false);
   const switchLabel = isSwitchChecked ? "One Way" : "Two Way"
+
+  const handleFlightResults = () => {
+    switch(isSwitchChecked) {
+      case true: // means "one way"
+        if(flightInfo.departureAirport === "" || flightInfo.arrivalAirport === "" || flightInfo.departureDate === "") {
+          alert("Be sure all areas are filled")
+        } else {
+          setRenderFlightResults(true)
+        };
+        break
+      case false: // means"two way"
+        if(
+          flightInfo.departureAirport === "" 
+          || flightInfo.arrivalAirport === "" 
+          || flightInfo.departureDate === ""
+          || flightInfo.returnDate === ""
+        ) {
+          alert("Be sure all areas are filled")
+        } else {
+          setRenderFlightResults(true)
+        };
+        break
+    };
+  };
 
   return (
     <div className="App">
@@ -76,18 +103,19 @@ function App() {
                 variant="outline-primary"
                 type="submit"
                 className='buttons'
+                onClick={ handleFlightResults }
               > Search </Button>
               <Button
                 variant="outline-secondary"
-                type="submit"
                 className='buttons'
+                onClick={() => window.location.reload()}
               > Reset </Button>
             </Col>
           </Row>
 
           <Row>
             <Col>
-              <FlightResults />
+              { renderFlightResults && <FlightResults /> }
             </Col>
           </Row>
 
